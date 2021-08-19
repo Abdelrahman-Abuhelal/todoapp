@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -7,19 +8,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.*;
 
 public class Utils {
-    public static void changeScene(ActionEvent event, String fxmlFile, String title, String username) {
+    public static void changeScene(javafx.event.ActionEvent event, String fxmlFile, String title, String username) {
         Parent root = null;
         if (username != null) {
             try {
                 FXMLLoader loader = new FXMLLoader(Utils.class.getResource(fxmlFile));
                 root = loader.load();
                 TodoHomeController todoHomeController = loader.getController();
-                todoHomeController.setInformation(username);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -35,14 +34,16 @@ public class Utils {
         stage.setScene(new Scene(root));
         stage.show();
     }
-    public static void signUpUser(ActionEvent event,String username,String pass,String Gender){
+
+
+    public static void signUpUser(ActionEvent event, String username, String pass, String Gender){
         Connection connection=null;
         PreparedStatement psInsert=null;
         PreparedStatement psCheckUserExists=null;
         ResultSet resultSet=null;
         try {
-            connection= DriverManager.getConnection("jdbc:sqlite:dataBase.db");
-            psCheckUserExists =connection.prepareStatement("SELECT * FROM users WHERE username=?");
+            connection= DriverManager.getConnection("jdbc:mysql://localhost:3306/info","root","root1234");
+            psCheckUserExists =connection.prepareStatement("SELECT * FROM usersinfo WHERE username=?");
             psCheckUserExists.setString(1,username);
             resultSet =psCheckUserExists.executeQuery();
             if (resultSet.isBeforeFirst()){
@@ -50,15 +51,16 @@ public class Utils {
                 Alert alert=new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("You can't use this username");
                 alert.show();
-            }else
+            }
+            else
             {
-                psInsert =connection.prepareStatement("INSERT INTO UsersInfo (Username,Password ,Gender VALUES (?, ? ,?)");
+                psInsert =connection.prepareStatement("INSERT INTO usersinfo (Username,Password ,Gender VALUES (?, ?, ?)");
                 psInsert.setString(1,username);
                 psInsert.setString(2,pass);
                 psInsert.setString(3,Gender);
                 psInsert.executeUpdate();
 
-                changeScene(event,"mainPage.fxml","Welcome",username);
+                changeScene(event, "sample/mainPage.fxml","Welcome",username);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -93,13 +95,16 @@ public class Utils {
             }
         }
     }
-    public static void logInUser(ActionEvent event,String username,String pass) throws SQLException {
+
+
+
+    public static void logInUser(javafx.event.ActionEvent event, String username, String pass) throws SQLException {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         ResultSet resultSet=null;
         try {
-            connection=DriverManager.getConnection("jdbc:sqlite:dataBase.db");
-            preparedStatement=connection.prepareStatement("SELEct Password,Gender FROM UsersInfo WHERE Username = ?");
+            connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/info","root","root1234");
+            preparedStatement=connection.prepareStatement("SELECT Password,Gender FROM Usersinfo WHERE Username = ?");
             preparedStatement.setString(1,username);
             resultSet=preparedStatement.executeQuery();
 
@@ -114,7 +119,7 @@ public class Utils {
                 String retrievedPassword=resultSet.getString("Password");
                 String retrievedGender=resultSet.getString("Gender");
                 if (retrievedPassword.equals(pass)){
-                    changeScene(event,"mainPage.fxml","Welcome",username);
+                    changeScene(event, "sample/mainPage.fxml","Welcome",username);
                 }
                 else{
                     System.out.println("Password doesn't match");

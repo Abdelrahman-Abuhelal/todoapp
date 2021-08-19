@@ -1,30 +1,26 @@
 package sample;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.*;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
+
     @FXML
     private Button button_sign_in;
+    @FXML
     private TextField tf_username;
+    @FXML
     private TextField tf_password;
-    private Button button_sign_up;
-
-
-
+    @FXML
+    private Button to_sign_up;
 
 
     @Override
@@ -32,21 +28,23 @@ public class LogInController implements Initializable {
     button_sign_in.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-            Utils.logInUser(event,tf_username.getText(),tf_password.getText());
+            try {
+                Utils.logInUser(event,tf_username.getText(),tf_password.getText());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
-
-
     });
+
+        to_sign_up.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Utils.changeScene(event, "sample/Sign-up.fxml","SignUp",null);
+            }
+        });
+
     }
 
-    public void Login(ActionEvent event){
-        try {
-        if (loginModel.isLogin(tf_username.getText(),tf_password.getText())){
-        }
-        else{
-        }
-        }
-        catch (Exception e){
-        }
-    }
+
+
 }

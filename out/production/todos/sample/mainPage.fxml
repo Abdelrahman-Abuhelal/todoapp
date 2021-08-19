@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<SplitPane dividerPositions="0.5" orientation="VERTICAL" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TodoHomeController">
+   <items>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="864.0">
+         <children>
+            <Button fx:id="button_add_task" layoutX="9.0" layoutY="9.0" mnemonicParsing="false" onAction="#addTask" prefHeight="30.0" prefWidth="89.0" text="Add task" />
+            <DatePicker fx:id="date_picker" layoutX="117.0" layoutY="9.0" prefHeight="30.0" prefWidth="140.0" promptText="Add day" />
+            <TextField fx:id="desc_text" layoutX="278.0" layoutY="11.0" prefHeight="30.0" prefWidth="578.0" promptText="Add your task here!">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <Separator layoutX="104.0" orientation="VERTICAL" prefHeight="50.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="104.0" AnchorPane.topAnchor="0.0" />
+            <Separator layoutX="264.0" layoutY="2.0" orientation="VERTICAL" prefHeight="50.0" prefWidth="0.0" />
+         </children>
+      </AnchorPane>
+      <ListView fx:id="task_list" prefHeight="371.0" prefWidth="856.0" />
+   </items>
+</SplitPane>

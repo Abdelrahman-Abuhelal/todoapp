@@ -11,13 +11,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("fxml/Login-in.fxml"));
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("sample/mainPage.fxml"));
             Scene scene=new Scene(root);
-            primaryStage.setTitle("Hello World");
+            primaryStage.setTitle("Log in");
             primaryStage.setScene(scene);
             primaryStage.show();
         }catch (Exception e){
-
+        e.printStackTrace();
         }
 
     }

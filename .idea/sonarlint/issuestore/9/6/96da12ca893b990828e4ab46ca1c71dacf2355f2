@@ -1,0 +1,15 @@
+
+k	java:S117'"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àîÇÌýÿÿÿÿ
+P
+java:S1118":Add a private constructor to hide the implicit public one.(¼Øûì
+\
+java:S1854"FRemove this useless assignment to local variable "todoHomeController".(õ¡ó¹
+M	java:S1062"9Replace this use of System.out or System.err by a logger.(‚ý¤
+m
+java:S3776e"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(‰ïæõþÿÿÿÿ
+N	java:S106q"9Replace this use of System.out or System.err by a logger.(ÕÂäÂ
+N	java:S106}"9Replace this use of System.out or System.err by a logger.(¤€à­
+M
+java:S1481"7Remove this unused "todoHomeController" local variable.(õ¡ó¹
+I
+java:S1481x"4Remove this unused "retrievedGender" local variable.(‡¬îf
