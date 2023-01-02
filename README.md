@@ -1,7 +1,7 @@
 # todoapp
 It is an Desktop application programmed using JavaFx to track and organize the tasks that the user have in daily life.
 
->> Interfaces:
+Interfaces:
 
 >> Sign Up Page
 
