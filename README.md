@@ -1,4 +1,4 @@
-# todoapp
+# todoapp is an app which is used to track and organize the tasks that the user have in daily life.
 
 >>Sign Up Page
 
